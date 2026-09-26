@@ -933,3 +933,138 @@ body {
 .alert {
   overflow: hidden;
 }
+
+
+/* Register / password reset forms: fully centred box, fields and submit button.
+   Core DokuWiki sets form { display: inline } and fieldset { margin: auto },
+   which fights with Bootstrap. Force a block-level centred card and centre
+   every control inside it. */
+#dw__register,
+#dw__resendpwd {
+  display: block !important;
+  width: 100%;
+  max-width: 420px;
+  margin: 2em auto !important;
+  text-align: center;
+
+  fieldset {
+    display: block;
+    width: 100% !important;
+    max-width: 420px;
+    margin: 0 auto !important;
+    text-align: center;
+    padding: 1em 1.25em 1.25em;
+  }
+
+  legend {
+    text-align: center;
+    width: auto;
+    margin: 0 auto 0.75em;
+  }
+
+  /* Labels + inputs: stack and centre (override core label.block right-align) */
+  label.block {
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    white-space: normal;
+    margin-bottom: 0.75em;
+  }
+
+  label.block span {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+
+  label.block input.edit,
+  label.block select {
+    display: block;
+    width: 90% !important;
+    max-width: 280px;
+    margin: 0 auto !important;
+    text-align: left; /* typed text still left-aligned inside the input */
+  }
+
+  /* "Remember me" on its own full-width row */
+  label[for="remember__me"] {
+    display: block;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-bottom: 1em;
+    text-align: center !important;
+  }
+
+  /* Centre the submit button */
+  [type="submit"],
+  button[type="submit"] {
+    display: inline-block;
+    margin: 0.5em auto 0 !important;
+    float: none !important;
+  }
+}
+
+
+/* Login form: Redmine-style layout - label text above the input, left aligned, full width
+   inputs. Redmine's login box is 300px wide. */
+#dw__login {
+  display: block !important;
+  width: 100%;
+  max-width: 300px;
+  margin: 2em auto !important;
+  text-align: left;
+
+  fieldset {
+    display: block;
+    width: 100% !important;
+    max-width: 300px;
+    margin: 0 auto !important;
+    text-align: right; /* "remember me" and the submit button line up on the right */
+    padding: 1em 1.25em 1.25em;
+  }
+
+  /* Bootstrap underlines the legend: keep the title centred and the underline full width */
+  legend {
+    text-align: center;
+    width: 100%;
+    margin: 0 0 0.75em;
+  }
+
+  /* label text on its own line above the input, left aligned */
+  label.block {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.75em;
+  }
+
+  label.block span {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+
+  /* the input fills the box */
+  label.block input.edit {
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  /* "Remember me" on its own row, right aligned */
+  label[for="remember__me"] {
+    display: block;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-bottom: 1em;
+    text-align: right;
+  }
+
+  /* submit button on its own row, right aligned */
+  [type="submit"],
+  button[type="submit"] {
+    display: inline-block;
+    margin: 0.5em 0 0 !important;
+    float: none !important;
+  }
+}
+
