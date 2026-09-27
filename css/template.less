@@ -1018,11 +1018,12 @@ body {
     margin: 0 auto 0.75em;
   }
 
-  /* Labels + inputs: stack and centre (override core label.block right-align) */
+  /* Labels + inputs: stack them, label text on the left, input on the line
+     below (overrides the core's right aligned, bold label.block) */
   label.block {
     display: block;
     width: 100%;
-    text-align: center !important;
+    text-align: left !important;
     white-space: normal;
     margin-bottom: 0.75em;
   }
@@ -1032,13 +1033,31 @@ body {
     margin-bottom: 0.25em;
   }
 
-  label.block input.edit,
+  /* Inputs fill the row so that every field shares the same left and right
+     edge. Matched by element rather than by .edit on purpose: the core Form
+     API only guarantees the classes the core code itself adds, and these
+     fields carry size="50", so a missing .edit used to blow the card open. */
+  label.block input,
   label.block select {
     display: block;
-    width: 90% !important;
-    max-width: 280px;
+    width: 100% !important;
     margin: 0 auto !important;
     text-align: left; /* typed text still left-aligned inside the input */
+  }
+
+  /* checkboxes/radios keep their natural size, should a field ever be added */
+  label.block input[type="checkbox"],
+  label.block input[type="radio"] {
+    display: inline-block;
+    width: auto !important;
+    margin: 0 0 0 0.5em;
+    vertical-align: middle;
+  }
+
+  /* the core markup sprinkles <br> between the fields; now that every label
+     and input is a block they only produce blank lines */
+  br {
+    display: none;
   }
 
   /* "Remember me" on its own full-width row */
@@ -1050,12 +1069,27 @@ body {
     text-align: center !important;
   }
 
-  /* Centre the submit button */
+  /* Buttons: one centred row, one symmetric gap, identical boxes.
+     The reset button has to be in the selector list as well: the core only
+     marks the submit one, so the reset kept the .mr-2 the template puts on
+     every button, which pushed the pair off centre and made it look squeezed. */
   [type="submit"],
-  button[type="submit"] {
+  [type="reset"] {
     display: inline-block;
-    margin: 0.5em auto 0 !important;
+    margin: 0.5em 0 0 !important;
     float: none !important;
+  }
+
+  [type="submit"] + [type="reset"] {
+    margin-left: 0.75em !important;
+  }
+
+  /* Only a submit button that is followed by another button loses its icon,
+     i.e. the "save" of the profile form. The single button forms (register,
+     resendpwd) keep theirs, where there is nothing to line up against. */
+  [type="submit"]:not(:last-child) svg,
+  [type="submit"]:not(:last-child) .iconify {
+    display: none;
   }
 }
 
