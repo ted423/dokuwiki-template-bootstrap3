@@ -408,6 +408,62 @@ div#picker2 {
     border-bottom-color: white;
   }
 
+  /* "Manual Install" form. Core DokuWiki right aligns the bold labels and halves
+     the width of every input, which looks broken next to the rest of the admin
+     UI. Use the login form's arrangement instead: label text on its own line,
+     left aligned, with the input filling the row. The overwrite checkbox and the
+     Install button stay on the right. */
+  form.install {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    margin: 1em auto !important; /* centre the form block in the admin page */
+    text-align: right; /* keeps the submit button on the right */
+
+    /* every field is a block now, so the separators are just blank lines */
+    br {
+      display: none;
+    }
+
+    label.block {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-weight: normal;
+      white-space: normal;
+      margin-bottom: 1em;
+    }
+
+    /* The form API gives these inputs no class beyond "block", so they have to be
+       matched by element. Each input fills the row and pushes its label text onto
+       its own line, which also makes the URL and the file field the same width. */
+    label.block input {
+      display: block;
+      width: 100% !important;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* the overwrite checkbox is the last field: text and box share a right aligned row */
+    label.block:last-of-type {
+      text-align: right;
+      margin-bottom: 0.5em;
+    }
+
+    label.block input[type="checkbox"] {
+      display: inline-block;
+      width: auto !important;
+      margin: 0 0 0 0.5em;
+      vertical-align: middle;
+    }
+
+    [type="submit"] {
+      display: inline-block;
+      margin: 0.5em 0 0 !important;
+      float: none !important;
+    }
+  }
+
 }
 
 
